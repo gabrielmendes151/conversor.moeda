@@ -1,0 +1,22 @@
+client:
+  banco-central:
+    base-url: https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/
+    cotacao: CotacaoMoedaDia(moeda=@moeda,dataCotacao=@dataCotacao)?$top=1&$orderby=dataHoraCotacao%20desc
+    moeda: Moedas?$select=simbolo,nomeFormatado
+
+server:
+  port: 8080
+
+spring:
+  datasource:
+    driverClassName: org.h2.Driver
+    password: password
+    url: jdbc:h2:mem:test-cortexdb
+    username: sa
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: true
+
