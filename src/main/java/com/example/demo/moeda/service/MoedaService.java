@@ -1,5 +1,6 @@
 package com.example.demo.moeda.service;
 
+import com.example.demo.exceptions.ValidacaoException;
 import com.example.demo.moeda.client.BancoCentralClient;
 import com.example.demo.enuns.Moeda;
 import com.example.demo.moeda.client.dto.CotacaoResponse;
@@ -46,7 +47,7 @@ public class MoedaService {
         return bancoCentralClient.getCotacaoMoeda(formataParam(moedaCotacao.name()), formataParam(dataCotacao))
             .getCotacoes().stream()
             .findFirst()
-            .orElseThrow(() -> new RuntimeException("Cotacação não encontrada"));
+            .orElseThrow(() -> new ValidacaoException("Cotacação não encontrada"));
     }
 
     private String formataParam(final String campo) {

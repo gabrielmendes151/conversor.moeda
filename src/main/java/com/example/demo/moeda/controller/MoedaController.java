@@ -39,8 +39,8 @@ public class MoedaController {
                                                  @PathVariable("moedaOrigem") final Moeda moedaOrigem,
                                                  @ApiParam(name = "moedaResultado", value = "Moeda do resultado", required = true)
                                                  @PathVariable("moedaResultado") final Moeda moedaResultado,
-                                                 @ApiParam(name = "dataCotacao", value = "Data cotação da moeda", format = "mm-DD-yyyy",
-                                                     required = true, example = "05-30-2020")
+                                                 @ApiParam(name = "dataCotacao", value = "Data de cotação da moeda -> mm-DD-yyyy",
+                                                     required = true, example = "01-05-2021")
                                                  @PathVariable("dataCotacao") final String dataCotacao) {
         final var moedaConverterResponse = moedaService.converterMoeda(valor, moedaOrigem,
             moedaResultado, dataCotacao);
