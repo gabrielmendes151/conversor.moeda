@@ -39,7 +39,8 @@ dependencies {
     annotationProcessor("org.mapstruct:mapstruct-processor:${mapstructVersion}")
     testImplementation 'org.powermock:powermock-module-junit4:2.0.0-beta.5'
     testImplementation 'org.powermock:powermock-api-mockito2:2.0.0-beta.5'
-
+    compile('io.springfox:springfox-swagger2:2.9.2')
+    compile('io.springfox:springfox-swagger-ui:2.9.2')
 }
 
 dependencyManagement {
