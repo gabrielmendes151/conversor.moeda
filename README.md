@@ -15,4 +15,5 @@ existem caches expirados no sistema.
 <img src="https://i.imgur.com/RXVssWk.png">
 
 <b>Considerações importantes</b>
+
 Não foi criado uma estrutura de fila nessa arquitetura pois não vi sentido nessa funcionalidade,talvez eu tenha entendido de modo errado o que foi proposto.
