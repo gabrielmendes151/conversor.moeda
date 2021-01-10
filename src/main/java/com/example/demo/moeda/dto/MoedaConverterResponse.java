@@ -33,11 +33,4 @@ public class MoedaConverterResponse {
         final var consulta = LocalTime.parse(horaConsulta);
         return consulta.plusMinutes(30).truncatedTo(ChronoUnit.MILLIS);
     }
-    
-    @JsonIgnore
-    public Boolean isvalorCacheado() {
-        var horaAtual = LocalTime.now().truncatedTo(ChronoUnit.MILLIS);
-        return !horaAtual.equals(LocalTime.parse(horaConsulta)) &&
-            LocalTime.now().truncatedTo(ChronoUnit.MILLIS).isBefore(getHoraTerminoCache());
-    }
 }

@@ -42,8 +42,8 @@ public class MoedaService {
             .setScale(2, RoundingMode.HALF_DOWN));
     }
 
-    private CotacaoResponse getCotacaoResponse(Moeda moedaResultado, String dataCotacao) {
-        return bancoCentralClient.getCotacaoMoeda(formataParam(moedaResultado.name()), formataParam(dataCotacao))
+    private CotacaoResponse getCotacaoResponse(Moeda moedaCotacao, String dataCotacao) {
+        return bancoCentralClient.getCotacaoMoeda(formataParam(moedaCotacao.name()), formataParam(dataCotacao))
             .getCotacoes().stream()
             .findFirst()
             .orElseThrow(() -> new RuntimeException("Cotacação não encontrada"));

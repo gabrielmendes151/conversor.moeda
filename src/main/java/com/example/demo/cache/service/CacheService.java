@@ -1,6 +1,7 @@
 package com.example.demo.cache.service;
 
 import com.example.demo.cache.repositoy.CacheRepository;
+import com.example.demo.enuns.Status;
 import com.example.demo.mapper.CacheMapper;
 import com.example.demo.enuns.Moeda;
 import com.example.demo.moeda.dto.MoedaConverterResponse;
@@ -27,5 +28,12 @@ public class CacheService {
         final var cache = mapper.toCache(valor, moedaOrigem, moedaResultado, cotacao, moedaConverterResponse,
             LocalDate.now().atTime(moedaConverterResponse.getHoraTerminoCache()));
         repository.save(cache);
+    }
+
+    public boolean isCacheAtivo(final BigDecimal valor, final Moeda moedaOrigem, final Moeda moedaResultado,
+                                final String dataCotacao) {
+        final var cotacao = LocalDate.parse(dataCotacao, DateTimeFormatter.ofPattern(PATTERN_MM_DD_YYYY));
+        return repository.findByValorAndMoedaOrigemAndMoedaResultadoAndDataCotacaoAndStatus(valor, moedaOrigem,
+            moedaResultado, cotacao, Status.ATIVO).isPresent();
     }
 }

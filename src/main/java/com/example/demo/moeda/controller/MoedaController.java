@@ -24,7 +24,7 @@ public class MoedaController {
 
     private final CacheService cacheService;
 
-    @GetMapping
+    @GetMapping("tipos")
     public Map<String, String> getMoedas() {
         return Arrays.stream(Moeda.values()).collect(Collectors.toMap(Enum::name, Moeda::getDescricao));
     }
@@ -36,9 +36,9 @@ public class MoedaController {
                                                  @PathVariable("dataCotacao") final String dataCotacao) {
         final var moedaConverterResponse = moedaService.converterMoeda(valor, moedaOrigem,
             moedaResultado, dataCotacao);
-        if (moedaConverterResponse.isvalorCacheado()) {
+        if (cacheService.isCacheAtivo(valor, moedaOrigem, moedaResultado, dataCotacao)) {
             moedaConverterResponse.setCacheado(true);
-        }else{
+        } else {
             cacheService.save(valor, moedaOrigem, moedaResultado, dataCotacao, moedaConverterResponse);
         }
         return moedaConverterResponse;
